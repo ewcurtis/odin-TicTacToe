@@ -14,3 +14,35 @@ header {
     box-shadow: 0 0 10px rgba(0,20,30,0.6);
 
 }
+
+.gameboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    grid-template-rows: repeat(1fr, 6);
+    height: max(80vh, 15rem);
+
+}
+.card {
+    flex: 1;
+    font-size: 5rem;
+}
+
+.row-1 {
+    grid-area: 2 / 2 / 3 / 5;
+    display: flex;
+    
+}
+.row-2 {
+    grid-area: 3 / 2 / 4 / 5;
+    display: flex;
+}
+
+.row-3 {
+    grid-area: 4 / 2 / 5 / 5;
+    display: flex;
+    
+}
+.reset {
+    grid-area: 5 / 3 / 6 / 4;
+    margin: 1rem;
+}
