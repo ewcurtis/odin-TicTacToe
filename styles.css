@@ -16,6 +16,35 @@ header {
 
 }
 
+.gamemode {
+    display: none;
+    grid-template-columns: 3fr 1fr 1fr 1fr 3fr;
+    grid-template-rows: repeat(7, 1fr);
+    height: max(80vh, 15rem);
+    gap: 1rem;
+}
+
+.pvp {
+    grid-area: 4 / 3 / 5 / 4;
+
+}
+
+.or-divider {
+    grid-area: 5 / 3 / 6 / 4;
+    justify-self: center;
+    align-self: center;
+
+}
+
+.ai {
+    grid-area: 6 / 3 / 7 / 4;
+
+}
+
+.pvp, .ai {
+    border-radius: 100px;
+}
+
 .gameboard {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr 1fr 3fr;
@@ -45,13 +74,20 @@ header {
     grid-template-columns: repeat(3, 1fr);
     
 }
+
 .reset {
-    grid-area: 5 / 3 / 6 / 4;
+    grid-area: 5 / 2 / 6 / 3;
+}
+.reset, .new-game {
     margin: 1rem;
     background-color: white;
     border: none;
     font-weight: bold;
     font-size: 2rem;
+}
+
+.new-game {
+    grid-area: 5 / 4 / 6 / 5; 
 }
 
 .message {
@@ -79,4 +115,15 @@ header {
     .message {
         font-size: 2rem;
     }
+}
+
+#player1 {
+    grid-area: 2 / 2 / 3 / 5;
+}
+#player2 {
+    grid-area: 3 / 2 / 4 / 5;
+}
+
+#player1, #player2 {
+    border-radius: 5px;
 }

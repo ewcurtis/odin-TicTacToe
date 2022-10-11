@@ -78,3 +78,7 @@ const game = (() => {
 
     return {arr};
 })();
+
+const playerFactory = (name, mark) => {
+    return {name, mark};
+}
