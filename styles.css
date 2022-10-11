@@ -56,7 +56,7 @@ header {
 }
 
 .message {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     margin: 1rem;
     grid-area: 1 / 2 / 2 / 5;
@@ -75,5 +75,9 @@ header {
 
     .gameboard {
         grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    }
+
+    .message {
+        font-size: 2rem;
     }
 }
