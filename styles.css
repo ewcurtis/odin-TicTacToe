@@ -12,37 +12,68 @@ header {
     align-items: center;
     font-size: 5rem;
     box-shadow: 0 0 10px rgba(0,20,30,0.6);
+    overflow: none;
 
 }
 
 .gameboard {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    grid-template-columns: 3fr 1fr 1fr 1fr 3fr;
     grid-template-rows: repeat(1fr, 6);
     height: max(80vh, 15rem);
 
 }
 .card {
-    flex: 1;
-    font-size: 5rem;
+    font-size: 4rem;
+
 }
 
 .row-1 {
     grid-area: 2 / 2 / 3 / 5;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     
 }
 .row-2 {
     grid-area: 3 / 2 / 4 / 5;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .row-3 {
     grid-area: 4 / 2 / 5 / 5;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     
 }
 .reset {
     grid-area: 5 / 3 / 6 / 4;
     margin: 1rem;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.message {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem;
+    grid-area: 1 / 2 / 2 / 5;
+    justify-self: center;
+    align-self: center;
+}
+
+@media screen and (max-width: 500px) {
+    header {
+        font-size: 3rem;
+    }
+
+    .card {
+        font-size: 2rem;
+    }
+
+    .gameboard {
+        grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    }
 }
