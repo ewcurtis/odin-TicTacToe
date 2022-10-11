@@ -19,13 +19,12 @@ header {
 .gameboard {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr 1fr 3fr;
-    grid-template-rows: repeat(1fr, 6);
+    grid-template-rows: repeat(6, 1fr);
     height: max(80vh, 15rem);
 
 }
 .card {
-    font-size: 4rem;
-
+    font-size: 3rem;
 }
 
 .row-1 {
