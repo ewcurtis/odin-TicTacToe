@@ -29,7 +29,7 @@ const game = (() => {
         if ((arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== "") || (arr[3] === arr[4] && arr[3] === arr[5] && arr[3] !== "") ||
         (arr[6] === arr[7] && arr[6] === arr[8] && arr[6] !== "") || (arr[0] === arr[3] && arr[0] === arr[6] && arr[0] !== "") ||
         (arr[1] === arr[4] && arr[1] === arr[7] && arr[1] !== "") || (arr[2] === arr[5] && arr[2] === arr[8] && arr[2] !== "") ||
-        (arr[0] === arr[4] && arr[0] === arr[8] && arr[0] !== "") || (arr[2] === arr[4] === arr[6]) && arr[2] !== "") {
+        (arr[0] === arr[4] && arr[0] === arr[8] && arr[0] !== "") || (arr[2] === arr[4] && arr[2] === arr[6]) && arr[2] !== "") {
             gameOver = true;
             if (playerOne) {
                 message.textContent = "You Win!";
@@ -38,6 +38,7 @@ const game = (() => {
             }
         } else {
             for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === "") break;
                 if (i === 8) {
                     if (arr[i] !== "") {
                         gameOver = true;
