@@ -7,12 +7,14 @@ const game = (() => {
     const cells = document.querySelectorAll(".card");
     const gameBoard = document.querySelector(".gameboard");
     const gameMode = document.querySelector(".gamemode");
+    const difficultySetting = document.querySelector("#difficulty");
 
     let playerOne = true;
     let arr = ["","","","","","","","",""];
     let pvpMode = false;
     let p1 = "";
     let p2 = "";
+    let difficulty = "easy";
 
     const checkGameOver = (arr) => {
         let gameOver = false;
@@ -52,6 +54,66 @@ const game = (() => {
        
     }
 
+    const smartPCTurn = (arr, difficulty) => {
+        
+        //Checks for win condition
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] === "") {
+                arr[i] = "O";
+                let check = checkGameOver(arr);
+                if (check.gameOver) {
+                    cells[i].textContent = "O";
+                    arr[i] = "O";
+                    return;
+                } else {
+                    arr[i] = "";
+                }
+
+            } 
+            
+        }
+
+        //check for lose condition
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] === "") {
+                arr[i] = "X";
+                let check = checkGameOver(arr);
+                if (check.gameOver) {
+                    cells[i].textContent = "O";
+                    arr[i] = "O";
+                    return;
+                } else {
+                    arr[i] = "";
+                }
+
+            }
+        }
+
+        //Only weakness destroyed
+        if (difficulty === "impossible") {
+            if (arr[4] === "X" && arr[8] === "X" && arr[2] === "") {
+                cells[2].textContent = "O";
+                arr[2] = "O";
+                return;
+            }
+        }
+        //Initial setup for optimal gameplay
+        if (arr[4] === "") {
+            cells[4].textContent = "O";
+            arr[4] = "O";
+            return;
+        }
+
+        if (arr[0] === "") {
+            cells[0].textContent = "O";
+            arr[0] = "O";
+            return;
+        }
+
+        //If we reach this point the ai will randomly choose a spot
+        pcTurn(arr);
+    }
+
     //PVP game mode
     pvpButton.addEventListener("click", e => {
 
@@ -74,6 +136,7 @@ const game = (() => {
         gameBoard.style.cssText = "display: grid;";
         gameMode.style.cssText = "display: none";
         pvpMode = false;
+        difficulty = difficultySetting.value;
     })
 
     cells.forEach(cell => {
@@ -91,7 +154,12 @@ const game = (() => {
     
                     if (!gameCheck.gameOver) {
                         playerOne = false;
-                        pcTurn(arr);
+                        if (difficulty === "easy") {
+                            pcTurn(arr);
+                        } else {
+                            smartPCTurn(arr, difficulty);
+                        }
+                        
                         gameCheck = checkGameOver(arr);
                         
                     }

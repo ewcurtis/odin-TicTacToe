@@ -11,10 +11,15 @@
 <body>
     <header>Tic-Tac-Toe</header>
     <div class="gamemode">
-        <input id="player1" placeholder="Player 1" minlength="1">
-        <input id="player2" placeholder="Player 2" minlength="1">
+        <input id="player1" placeholder="Player 1" minlength="1" maxlength="20" required>
+        <input id="player2" placeholder="Player 2" minlength="1" maxlength="20" required>
         <button class="pvp">Player Vs Player</button>
         <div class="or-divider">OR</div>
+        <select name="difficulty" id="difficulty">
+            <option value="easy" default>Easy</option>
+            <option value="hard">Hard</option>
+            <option value="impossible">Impossible</option>
+        </select>
         <button class="ai">Vs AI</button>
     </div> 
     <div class="gameboard">
