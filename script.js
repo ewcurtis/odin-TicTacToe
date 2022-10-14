@@ -1,11 +1,18 @@
-const message = document.querySelector(".message");
-const cells = document.querySelectorAll(".card");
-const gameBoard = document.querySelector(".gameboard");
-const gameMode = document.querySelector(".gamemode");
+
 
 const game = (() => {
     const pvpButton = document.querySelector(".pvp");
     const aiButton = document.querySelector(".ai");
+    const message = document.querySelector(".message");
+    const cells = document.querySelectorAll(".card");
+    const gameBoard = document.querySelector(".gameboard");
+    const gameMode = document.querySelector(".gamemode");
+
+    let playerOne = true;
+    let arr = ["","","","","","","","",""];
+    let pvpMode = false;
+    let p1 = "";
+    let p2 = "";
 
     const checkGameOver = (arr) => {
         let gameOver = false;
@@ -51,9 +58,10 @@ const game = (() => {
         const player1 = document.querySelector("#player1");
         const player2 = document.querySelector("#player2");
         if (player1.checkValidity() && player2.checkValidity() && player1.value !== player2.value) {
-            let p1 = playerFactory(player1.value);
-            let p2 = playerFactory(player2.value);
-            newGameFactory(true, p1, p2);
+            p1 = playerFactory(player1.value);
+            p2 = playerFactory(player2.value);
+            pvpMode = true;
+
             gameBoard.style.cssText = "display: grid;";
             gameMode.style.cssText = "display: none";
         } else {
@@ -65,41 +73,26 @@ const game = (() => {
     aiButton.addEventListener("click", e => {
         gameBoard.style.cssText = "display: grid;";
         gameMode.style.cssText = "display: none";
-        newGameFactory(false,"","");
+        pvpMode = false;
     })
-
-    return {checkGameOver, pcTurn};
-})();
-
-
-//Players
-const playerFactory = name => {
-    return {name};
-};
-
-//Games
-const newGameFactory = (gamemode, p1, p2) => {
-
-    let playerOne = true;
-    let arr = ["","","","","","","","",""];
 
     cells.forEach(cell => {
         cell.addEventListener("click", e => {
             if (message.textContent === "" && cell.textContent === "") {
-                if (!gamemode) {
+                if (!pvpMode) {
                     //vs AI
                     cell.textContent = "X";
                     console.log("got here!");
                     arr[parseInt(cell.getAttribute("id"))] = "X";
                     console.log("Got here too!");
                     console.log("cell: " + arr[parseInt(cell.getAttribute("id"))]);
-                    let gameCheck = game.checkGameOver(arr);
+                    let gameCheck = checkGameOver(arr);
                     console.log(gameCheck.gameOver);
     
                     if (!gameCheck.gameOver) {
                         playerOne = false;
-                        game.pcTurn(arr);
-                        gameCheck = game.checkGameOver(arr);
+                        pcTurn(arr);
+                        gameCheck = checkGameOver(arr);
                         
                     }
     
@@ -128,10 +121,8 @@ const newGameFactory = (gamemode, p1, p2) => {
                     arr[parseInt(cell.getAttribute("id"))] = "O";
 
                     }
-
-                    playerOne = !playerOne;
     
-                    let gameCheck = game.checkGameOver();
+                    let gameCheck = checkGameOver(arr);
                     if (gameCheck.gameOver) {
                         if (gameCheck.tie) {
                             message.textContent = "It's a tie!"
@@ -144,6 +135,7 @@ const newGameFactory = (gamemode, p1, p2) => {
                     }
                         
                     }
+                    playerOne = !playerOne;
                 }  
             }
         })
@@ -171,4 +163,11 @@ const newGameFactory = (gamemode, p1, p2) => {
         gameBoard.style.cssText = "display: none;";
         gameMode.style.cssText = "display: grid";
     });
+
+})();
+
+
+//Players
+const playerFactory = name => {
+    return {name};
 };
