@@ -119,7 +119,13 @@ const game = (() => {
 
         const player1 = document.querySelector("#player1");
         const player2 = document.querySelector("#player2");
-        if (player1.checkValidity() && player2.checkValidity() && player1.value !== player2.value) {
+        if (player1.value === player2.value) {
+            player1.setCustomValidity("Each player should have their own unique name.");
+        } else {
+            player1.setCustomValidity("");
+        }
+        console.log(player1.checkValidity());
+        if (player1.checkValidity() && player2.checkValidity()) {
             p1 = playerFactory(player1.value);
             p2 = playerFactory(player2.value);
             pvpMode = true;
@@ -127,6 +133,7 @@ const game = (() => {
             gameBoard.style.cssText = "display: grid;";
             gameMode.style.cssText = "display: none";
         } else {
+            
             player1.reportValidity();
             player2.reportValidity();
         }
