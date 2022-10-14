@@ -54,24 +54,28 @@ header {
 }
 .card {
     font-size: 3rem;
+    
 }
 
 .row-1 {
     grid-area: 2 / 2 / 3 / 5;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
+    grid-template-rows: minmax(50px, 1fr);
     
 }
 .row-2 {
     grid-area: 3 / 2 / 4 / 5;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
+    grid-template-rows: minmax(50px, 1fr);
 }
 
 .row-3 {
     grid-area: 4 / 2 / 5 / 5;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
+    grid-template-rows: minmax(50px, 1fr);
     
 }
 
@@ -114,6 +118,12 @@ header {
 
     .message {
         font-size: 2rem;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .card {
+        font-size: 1.5rem;
     }
 }
 
